@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en" data-static="1">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fight Video Screener</title>
+<link rel="stylesheet" href="app.css?v=9">
+</head>
+<body>
+<header class="top">
+  <div class="wrap topbar">
+    <a class="brand" href="#today">Fight Video Screener</a>
+    <nav class="tabs">
+      <a class="tab" href="#today" data-tab="today">Today</a>
+      <a class="tab" href="#next" data-tab="next"><span class="t-long">Next video</span><span class="t-short">Next</span></a>
+      <a class="tab" href="#screener" data-tab="screener">Screener</a>
+      <a class="tab" href="#remixes" data-tab="remixes"><span class="t-long">Remixes that worked</span><span class="t-short">Remixes</span></a>
+      <a class="tab" href="#subjects" data-tab="subjects"><span class="t-long">Hot subjects</span><span class="t-short">Subjects</span></a>
+      <a class="tab" href="#mine" data-tab="mine"><span class="t-long">Your channel</span><span class="t-short">Yours</span></a>
+      <a class="tab" href="#saved" data-tab="saved"><span class="t-long">Saved</span><span class="t-short">☆</span> <span id="savedN" class="muted"></span></a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="status">
+    <span id="asof" class="asof">Loading…</span>
+    <button id="refresh" class="btn small" type="button" hidden title="Offered after a failed attempt or when the update is overdue">Run now</button>
+  </div>
+
+  <!-- Today: what moved since the last daily update, one fight per row -->
+  <section data-view="today" hidden>
+    <div id="today-head" class="todayhead"></div>
+    <div class="tsec" id="t-mine-sec" hidden><h3 class="h">Your latest upload<span class="from"></span></h3>
+      <div class="list" id="t-mine"></div></div>
+    <div class="tsec"><h3 class="h">Breakouts<span class="from"></span> <span class="hint">uploaded in the last 7 days, 5× its channel's usual or more, 20K+ views</span>
+      <button type="button" class="linkbtn" id="t-breakouts-all" data-all-breakouts></button></h3>
+      <div class="list" id="t-breakouts"></div></div>
+    <div class="tsec"><h3 class="h">Most views in 24 h<span class="from"></span> <span class="hint">views gained since the previous day's reading (footage up to 90 days old)</span></h3>
+      <div class="list" id="t-top24"></div></div>
+    <div class="tsec"><h3 class="h">New uploads<span class="from"></span> <span class="hint">uploaded in the last 3 days and seen for the first time today</span></h3>
+      <div class="list" id="t-fresh"></div></div>
+    <div class="tsec"><h3 class="h">Rising fighters<span class="from"></span> <span class="hint">views gained in 24 h against their own earlier days</span></h3>
+      <div id="t-subjects" class="risers"></div></div>
+    <div class="tsec"><h3 class="h">Your saved videos <span class="hint">views gained since the previous day</span></h3>
+      <div class="list" id="t-saved"></div></div>
+  </section>
+
+  <!-- Next video: fighter studies for your channel, Thai legends first (nextvideo.py) -->
+  <section data-view="next" hidden>
+    <div id="nx-head" class="todayhead"></div>
+    <div class="tsec" id="nx-prog-sec" hidden><h3 class="h">In progress <span class="hint">what changed since you picked it, and your upload against the range frozen at Pick</span></h3>
+      <div class="list" id="nx-prog"></div></div>
+    <div class="crow toggles">
+      <label><input type="checkbox" data-key="nxMma"> Include MMA &amp; boxing</label>
+      <label><input type="checkbox" data-key="nxNew"> New to you only</label>
+      <label><input type="checkbox" data-key="nxRecent"> Hide fighters you covered in the last 6 months</label>
+    </div>
+    <div id="nx-groups"></div>
+    <div class="tsec"><h3 class="h">Check an idea <span class="hint">a working title and the planned length</span></h3>
+      <div class="crow">
+        <input type="search" id="nx-title" placeholder="Working title, e.g. Samart: the Muay Thai genius" aria-label="Working title">
+        <select id="nx-len" aria-label="Planned length">
+          <option value="">Planned length</option>
+          <option value="300">Under 6 min</option>
+          <option value="480">6–10 min</option>
+          <option value="900">10–20 min</option>
+          <option value="1500">20 min +</option>
+        </select>
+      </div>
+      <div id="nx-check" class="nxcheck"></div></div>
+    <div class="tsec"><h3 class="h">Record <span class="hint">how each way of ordering fighters does against other creators' new breakdowns</span></h3>
+      <div id="nx-record"></div></div>
+    <div id="nx-not"></div>
+    <details class="how">
+      <summary>How the numbers work</summary>
+      <dl id="nx-how"></dl>
+    </details>
+  </section>
+
+  <!-- Screener: raw footage ranked -->
+  <section data-view="screener" hidden>
+    <div class="controls">
+      <div class="crow">
+        <div class="seg" data-key="rank" aria-label="Rank by">
+          <button type="button" data-v="score">Remix score</button>
+          <button type="button" data-v="out">Outlier</button>
+          <button type="button" data-v="heat">Heat</button>
+          <button type="button" data-v="views">Most viewed</button>
+        </div>
+        <div class="seg" data-key="win" aria-label="Uploaded within">
+          <button type="button" data-v="today" title="Uploaded in the 24 hours before the update">Today</button>
+          <button type="button" data-v="week">1 week</button>
+          <button type="button" data-v="month">30 days</button>
+          <button type="button" data-v="year">1 year</button>
+          <button type="button" data-v="all">All time</button>
+        </div>
+      </div>
+      <div class="crow chips" data-key="sport"></div>
+      <div class="crow">
+        <select data-key="type" aria-label="Type">
+          <option value="footage">Footage: fights, KOs, sparring, viral</option>
+          <option value="fights">Fights &amp; knockouts only</option>
+          <option value="street">Street &amp; viral</option>
+          <option value="sparring">Sparring</option>
+          <option value="events">Event streams</option>
+          <option value="training">Training &amp; technique</option>
+          <option value="talk">Talk &amp; news</option>
+          <option value="remix">Other creators' remixes</option>
+          <option value="all">Every type</option>
+        </select>
+        <select data-key="len" aria-label="Length">
+          <option value="any">Any length</option>
+          <option value="short">Shorts (≤ 1 min)</option>
+          <option value="clip">Clips (1–20 min)</option>
+          <option value="long">Long (20 min +)</option>
+        </select>
+        <select data-key="lang" aria-label="Title language">
+          <option value="en">English titles</option>
+          <option value="all">All languages</option>
+        </select>
+        <input type="search" data-key="q" placeholder="Search title, channel, fighter" aria-label="Search">
+      </div>
+      <div class="crow toggles">
+        <label><input type="checkbox" data-key="ufcDesc"> Show videos that mention UFC in the description</label>
+        <label><input type="checkbox" data-key="hideUfcNames"> Hide titles that name a UFC fighter</label>
+        <label><input type="checkbox" data-key="realThumbs"> Real thumbnails</label>
+      </div>
+      <div class="subjbar" hidden>Fighter / fight: <b></b> <span class="muted">· every window, every type</span>
+        <button type="button" class="btn small" data-clear-subj>Clear</button></div>
+      <details class="how">
+        <summary>How the numbers work</summary>
+        <dl>
+          <dt>Outlier</dt><dd>Views ÷ the channel's median views over its latest 30 uploads (Shorts compared with
+            its Shorts; a channel that usually gets under 1,000 views counts as 1,000). 10× = ten times what that
+            channel usually gets, so the subject pulled the views, not the channel's audience.</dd>
+          <dt>Heat</dt><dd><b>+48K · last 24 h</b> = views gained since the previous day's reading (a count is stored with
+            the time YouTube was read). <b>+1.6M · since upload</b> = all views of an upload under a day old.
+            <b>~120K · avg/day</b> (grey) = the average since upload, shown until a video has two daily readings; it
+            overstates today's pace 2–5×, so the Heat sort leaves those out.</dd>
+          <dt>Climbing / cooling</dt><dd>Views gained in the last day against the video's own pace (its 7-day average, or the
+            day before), compared with videos of the same age, since young uploads slow down by design. Climbing = 1.3×
+            the usual for its age and 1,000+ views a day; cooling = 0.6× or less. The bars are the views gained on each of
+            the last 14 days (today in light purple).</dd>
+          <dt>▲ / ▼</dt><dd>On the Remix score list: places moved in the list on screen since the previous day, once a video
+            has two days of measured gains.</dd>
+          <dt>Breakouts</dt><dd>On Today: a fight with an upload from the last 7 days at 5× its channel's usual or more and
+            20K+ views. A row is one fight (uploads naming the same two fighters), with its best upload, this week's uploads
+            and views, and how many breakdowns of it came out in the last 30 days.</dd>
+          <dt>Fresh from channel</dt><dd>An upload found in its channel's newest videos, already 5× that channel's usual,
+            before it reached a top search list. <b>Tracked</b> = no longer in today's search results; its watch page was
+            re-read so its line keeps going.</dd>
+          <dt>Proven</dt><dd>A remix (breakdown, story or reaction) about the same fighter or fight beat its channel's
+            norm. Other creators: 20× = full marks. Your channel: 5× = full marks.</dd>
+          <dt>Remix score</dt><dd>100 × footage fit × (30% demand + 30% outlier + 25% heat + 15% proven).
+            Demand = views on a log scale (10K → 0, 10M → 1). Outlier: 1× → 0, 100× → 1. Heat: 100/day → 0,
+            100K/day → 1. Bar colours: <i class="key s-demand"></i>demand <i class="key s-outlier"></i>outlier
+            <i class="key s-heat"></i>heat <i class="key s-proven"></i>proven.</dd>
+          <dt>Footage fit</dt><dd id="fitList"></dd>
+          <dt>UFC</dt><dd>Anything with UFC in the title, channel name or tags is removed. Videos that mention UFC
+            only in the description are hidden unless switched on above. <span class="b warn">UFC name</span> = a
+            current UFC fighter or a past UFC title fighter is named in the title; check where the footage is from.</dd>
+          <dt>Source</dt><dd id="srcLine"></dd>
+        </dl>
+      </details>
+    </div>
+    <div class="count" id="count-screener"></div>
+    <div class="list" id="list-screener"></div>
+    <button type="button" class="btn more" data-more="screener" hidden>Show more</button>
+  </section>
+
+  <!-- Remixes that worked: other creators' breakdowns / stories / reactions -->
+  <section data-view="remixes" hidden>
+    <div class="controls">
+      <div class="crow">
+        <div class="seg" data-key="rxRank" aria-label="Rank by">
+          <button type="button" data-v="out">Outlier</button>
+          <button type="button" data-v="views">Most viewed</button>
+          <button type="button" data-v="heat">Heat</button>
+        </div>
+        <div class="seg" data-key="rxWin" aria-label="Uploaded within">
+          <button type="button" data-v="today" title="Uploaded in the 24 hours before the update">Today</button>
+          <button type="button" data-v="week">1 week</button>
+          <button type="button" data-v="month">30 days</button>
+          <button type="button" data-v="year">1 year</button>
+          <button type="button" data-v="all">All time</button>
+        </div>
+        <select data-key="rxType" aria-label="Remix type">
+          <option value="all">Breakdowns, stories &amp; reactions</option>
+          <option value="Breakdown">Breakdowns</option>
+          <option value="Story">Stories / profiles</option>
+          <option value="Reaction">Reactions</option>
+        </select>
+      </div>
+      <div class="crow chips" data-key="rxSport"></div>
+      <p class="lead">Which fighters and angles did best as a breakdown for other channels, measured against each
+        channel's own usual views.</p>
+    </div>
+    <div class="count" id="count-remixes"></div>
+    <div class="list" id="list-remixes"></div>
+    <button type="button" class="btn more" data-more="remixes" hidden>Show more</button>
+  </section>
+
+  <!-- Hot subjects -->
+  <section data-view="subjects" hidden>
+    <div class="controls">
+      <div class="crow">
+        <div class="seg" data-key="sjSort" aria-label="Sort by">
+          <button type="button" data-v="opp">Opportunity</button>
+          <button type="button" data-v="heat">Heat</button>
+          <button type="button" data-v="proven">Proven</button>
+          <button type="button" data-v="n">Most videos</button>
+        </div>
+        <input type="search" data-key="sjQ" placeholder="Find a fighter" aria-label="Find a fighter">
+        <label class="toggles"><input type="checkbox" data-key="hideUfcNames"> Hide UFC fighters</label>
+      </div>
+      <div class="crow chips" data-key="sjSport"></div>
+      <p class="lead">Fighters and fights named in the titles. Opportunity = heat over the last 30 days × how well
+        remixes of them did ÷ how many remixes already came out this month.</p>
+    </div>
+    <div class="tablewrap"><table class="tbl" id="tbl-subjects"></table></div>
+    <button type="button" class="btn more" data-more="subjects" hidden>Show more</button>
+  </section>
+
+  <!-- Your channel -->
+  <section data-view="mine" hidden>
+    <div id="me-head" class="mehead"></div>
+    <div class="controls">
+      <div class="crow">
+        <div class="seg" data-key="meSort" aria-label="Sort by">
+          <button type="button" data-v="out">Outlier</button>
+          <button type="button" data-v="views">Most viewed</button>
+          <button type="button" data-v="new">Newest</button>
+        </div>
+      </div>
+    </div>
+    <h3 class="h">Angles on your channel <span class="hint" id="me-angles-from"></span></h3>
+    <div id="me-angles" class="angles"></div>
+    <h3 class="h">Fighters that worked for you</h3>
+    <div id="me-subj" class="subjgrid"></div>
+    <h3 class="h">Uploads</h3>
+    <div class="list" id="list-mine"></div>
+    <button type="button" class="btn more" data-more="mine" hidden>Show more</button>
+    <h3 class="h">Shorts</h3>
+    <div id="me-shorts" class="shorts"></div>
+  </section>
+
+  <!-- Saved -->
+  <section data-view="saved" hidden>
+    <div class="crow">
+      <button type="button" class="btn" id="copySaved">Copy list</button>
+      <span id="copyMsg" class="muted small"></span>
+    </div>
+    <div class="list" id="list-saved"></div>
+    <h3 class="h">Hidden</h3>
+    <div class="list" id="list-hidden"></div>
+  </section>
+</main>
+<div id="toast" class="toast" hidden></div>
+<script src="app.js?v=14"></script>
+</body>
+</html>
