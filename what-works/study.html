@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en" data-static="1">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Channel Study</title>
+<link rel="stylesheet" href="app.css?v=7">
+<link rel="stylesheet" href="study.css?v=2">
+</head>
+<body>
+<header class="top">
+  <div class="wrap topbar">
+    <a class="brand" href="#top" aria-label="Channel Study">
+      <span class="logo" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="6.8" cy="6.8" r="4.6" fill="none" stroke="#fff" stroke-width="2"/><path d="M10.3 10.3 L14 14" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M4.6 8.2 L6.2 6.4 L7.4 7.4 L9 5.4" fill="none" stroke="#fff" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span>Channel Study</span>
+    </a>
+    <nav class="tabs" aria-label="Sections">
+      <a class="tab" href="#uploads">Uploads</a>
+      <a class="tab" href="#compare">Compare</a>
+      <a class="tab" href="#pair" id="tab-pair">VoteSport &amp; ERA MMA</a>
+      <a class="tab" href="#niche">Niche</a>
+      <a class="tab" href="#how">How it works</a>
+    </nav>
+    <a class="tab xlink" href="index.html"><span aria-hidden="true">←</span> What Works</a>
+    <div class="updated" id="updated"><span class="dot"></span><span>Loading…</span></div>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow" id="eyebrow">Channel study</p>
+        <div class="pickrow">
+          <label class="sr" for="pick">Channel</label>
+          <span class="pickwrap"><select id="pick" disabled><option>Loading…</option></select></span>
+          <span class="pickmeta" id="pickmeta"></span>
+        </div>
+        <h1 class="headline" id="headline">Loading…</h1>
+      </div>
+      <aside id="feature" aria-label="Best upload of the last 12 months"></aside>
+    </div>
+    <div class="kpis" id="kpis"></div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section class="block" id="uploads" aria-labelledby="h-uploads">
+    <div class="sec-head"><div><h2 id="h-uploads">Every upload</h2><p id="uploads-lede"></p></div></div>
+    <div class="panel"><h3>Views over time</h3><p class="cap" id="sc-cap"></p>
+      <div class="scatter hover-layer" id="scatter"></div><div id="sc-legend"></div></div>
+    <div class="cols2">
+      <div class="panel"><h3>By title format</h3>
+        <p class="cap">Median against the channel's usual, all its measured uploads. Formats come from titles, as on What Works.</p>
+        <div class="chart c4" id="c-fmt"></div><div id="l-bars"></div></div>
+      <div>
+        <div class="panel"><h3>By length</h3><p class="cap">Median against the channel's usual, by video length.</p>
+          <div class="chart c4" id="c-len"></div></div>
+        <div class="panel"><h3>Titles that name a fighter</h3><p class="cap">Titles with a fighter's name against titles without one.</p>
+          <div class="chart c4" id="c-named"></div></div>
+      </div>
+    </div>
+    <div class="subhead"><div><h3 id="h-top">Top uploads</h3><p id="top-lede"></p></div>
+      <div class="seg" role="group" aria-label="Rank the uploads by" id="top-seg">
+        <button type="button" data-k="out" aria-pressed="true">Most above its usual</button>
+        <button type="button" data-k="v" aria-pressed="false">Most views</button>
+      </div>
+    </div>
+    <div class="vgrid" id="top-body"></div>
+    <div id="t-uploads"></div>
+  </section>
+
+  <section class="block" id="compare" aria-labelledby="h-compare">
+    <div class="sec-head"><div><h2 id="h-compare">Compare</h2><p id="compare-lede"></p></div></div>
+    <div class="panel"><div class="chart wide" id="c-compare"></div><div id="l-compare"></div></div>
+  </section>
+
+  <section class="block" id="pair" aria-labelledby="h-pair">
+    <div class="sec-head"><div><h2 id="h-pair">VoteSport and ERA MMA</h2><p id="pair-lede"></p></div></div>
+    <div class="kpis inline" id="pair-kpis"></div>
+    <div class="panel" id="p-pairs"><h3>The same story in both languages</h3><p class="cap" id="pairs-cap"></p>
+      <div class="chart pr" id="c-pairs"></div><div id="l-pairs"></div></div>
+    <div class="panel" id="p-monthly"><h3 id="m-title">Month by month</h3><p class="cap" id="m-cap"></p>
+      <div class="mchart hover-layer" id="c-monthly"></div></div>
+    <div class="cols2">
+      <div class="panel" id="p-yearly"><h3>Average views a month, by year</h3><p class="cap" id="y-cap"></p>
+        <div class="chart yr" id="c-yearly"></div><div id="l-yearly"></div></div>
+      <article class="note caveat"><h3>Read with care</h3><div id="caveat"></div></article>
+    </div>
+  </section>
+
+  <section class="block" id="niche" aria-labelledby="h-niche">
+    <div class="sec-head"><div><h2 id="h-niche">The niche</h2><p id="niche-lede"></p></div>
+      <a class="copy" href="index.html">Open What Works →</a></div>
+    <div class="ngrid" id="niche-body"></div>
+  </section>
+
+  <section class="block" id="how" aria-labelledby="h-how">
+    <div class="sec-head"><div><h2 id="h-how">How it works</h2></div></div>
+    <div class="how" id="how-body"></div>
+  </section>
+</main>
+<footer><div class="wrap" id="foot"></div></footer>
+<div class="tip" id="tip" hidden></div>
+<script src="study.js?v=2"></script>
+</body>
+</html>

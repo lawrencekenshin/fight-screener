@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en" data-static="1">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>What Works</title>
+<link rel="stylesheet" href="app.css?v=7">
+</head>
+<body>
+<header class="top">
+  <div class="wrap topbar">
+    <a class="brand" href="#top" aria-label="What Works">
+      <span class="logo" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 12 L6 7 L9 9.5 L14 3" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span>What Works</span>
+    </a>
+    <nav class="tabs" aria-label="Sections">
+      <a class="tab" href="#brief">Brief</a>
+      <a class="tab" href="#picks">Picks</a>
+      <a class="tab" href="#working">What's working</a>
+      <a class="tab" href="#breakouts">Breakouts</a>
+      <a class="tab" href="#channels">Channels</a>
+      <a class="tab" href="#how">How it works</a>
+    </nav>
+    <a class="tab" href="study.html" style="color:var(--light)">Channel study <span aria-hidden="true">→</span></a>
+    <div class="updated" id="updated"><span class="dot"></span><span>Loading…</span></div>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow" id="eyebrow">This week in fight videos</p>
+        <h1 class="headline" id="headline">Loading…</h1>
+      </div>
+      <aside id="feature" aria-label="Make next"></aside>
+    </div>
+    <div class="kpis" id="kpis"></div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section class="block" id="brief" aria-labelledby="h-brief">
+    <div class="sec-head"><div><h2 id="h-brief">The brief</h2><p id="brief-lede"></p></div></div>
+    <div class="brief" id="brief-body"></div>
+  </section>
+
+  <section class="block" id="picks" aria-labelledby="h-picks">
+    <div class="sec-head"><div><h2 id="h-picks">Picks for your channel</h2>
+      <p>Your Next video list in its order (Thai legends first, the one order tested on your channel). Each pick has
+        three title drafts in the formulas the niche rewards now, what other creators did with that fighter, and yours.</p></div></div>
+    <div class="picks" id="picks-body"></div>
+  </section>
+
+  <section class="block" id="working" aria-labelledby="h-working">
+    <div class="sec-head"><div><h2 id="h-working">What's working</h2>
+      <p>Every video against its own channel's usual (the median of the 10 uploads either side), so a big channel and a
+        small one count the same. Last 12 months; the thin line is the 90 % range.</p></div>
+      <div class="seg" role="group" aria-label="Which channels" id="view-seg">
+        <button type="button" data-v="all" aria-pressed="true">All</button>
+        <button type="button" data-v="Story" aria-pressed="false">Story channels</button>
+        <button type="button" data-v="Technical" aria-pressed="false">Technical channels</button>
+      </div>
+    </div>
+    <div class="panel"><h3>Formats</h3><p class="cap">Times their channel's usual views. Share of uploads 3–4 years ago → now on the right.</p>
+      <div class="chart" id="c-formats"></div><div id="l-formats"></div></div>
+    <div class="panel"><h3>Length</h3><p class="cap">Times their channel's usual views, by video length.</p>
+      <div class="chart" id="c-lengths"></div></div>
+    <div class="panel"><h3>Title habits <span class="muted small">(all channels)</span></h3>
+      <p class="cap">Titles with the habit against titles without it.</p>
+      <div class="chart" id="c-habits"></div></div>
+  </section>
+
+  <section class="block" id="breakouts" aria-labelledby="h-breakouts">
+    <div class="sec-head"><div><h2 id="h-breakouts">Breakouts</h2>
+      <p>The biggest jumps over a channel's usual in the last 4 months (50K+ views, at least 3 weeks old).</p></div></div>
+    <div class="vgrid" id="breakouts-body"></div>
+    <div class="sec-head" style="margin-top:28px"><div><h2>Fighters in demand as remixes</h2>
+      <p>Your lane's fighters in other creators' profiles, stories and breakdowns over the last 12 months, by how far
+        those videos beat their channel's usual.</p></div></div>
+    <div class="fgrid" id="subjects-body"></div>
+  </section>
+
+  <section class="block" id="channels" aria-labelledby="h-channels">
+    <div class="sec-head"><div><h2 id="h-channels">Channels</h2>
+      <p>Typical views per video (median): the year before against the last 12 months. Older videos have had longer to
+        collect views, so a channel that holds its audience sits a little left of where it started.</p></div></div>
+    <div class="panel"><div class="chart wide" id="c-channels"></div><div id="l-channels"></div></div>
+  </section>
+
+  <section class="block" id="how" aria-labelledby="h-how">
+    <div class="sec-head"><div><h2 id="h-how">How it works</h2></div></div>
+    <div class="how" id="how-body"></div>
+  </section>
+</main>
+<footer><div class="wrap" id="foot"></div></footer>
+<div class="tip" id="tip" hidden></div>
+<script src="app.js?v=8"></script>
+</body>
+</html>
