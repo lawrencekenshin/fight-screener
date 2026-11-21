@@ -1,0 +1,1 @@
+{"built": "2026-11-18T09:46:02Z", "built_ts": 1794994800.150041, "day": "2026-11-18", "days": 16, "ok": false, "state": "failed", "partial": [], "next_run": "2026-11-22T09:40:00Z", "failed": "2026-11-21T15:12:25Z", "reason": "ytdlp_broken", "consecutive_failures": 7, "refreshing": false}
